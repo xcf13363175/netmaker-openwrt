@@ -90,6 +90,7 @@ define Package/netmaker/postinst
 #!/bin/sh
 	chmod +x ./etc/init.d/netclient
 	chmod +x ./etc/netclient
+	chmod +x ./etc/hotplug.d/iface/99-netclient
 exit 0
 endef
 
