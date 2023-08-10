@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=netmaker
-PKG_VERSION:=0.9.2
+PKG_VERSION:=0.20.5
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/gravitl/netmaker.git
-PKG_SOURCE_VERSION:=bf51d02de1f3939cd7b1c117986f083848b86d6f
-PKG_SOURCE_DATE:=20220225
+PKG_SOURCE_VERSION:=fbac884ce2f4f028f026f5c4468d583a69b85ff7
+PKG_SOURCE_DATE:=20230811
 PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=MIT
@@ -76,21 +76,21 @@ endef
 
 define Package/netmaker/install
 	$(INSTALL_DIR) $(1)/etc/netclient
-	$(INSTALL_DIR) $(1)/etc/netclient/config
+	#$(INSTALL_DIR) $(1)/etc/netclient/config
 	$(INSTALL_DIR) $(1)/etc/systemd/
 	$(INSTALL_DIR) $(1)/etc/systemd/system
 	$(INSTALL_DIR) $(1)/usr/bin
 	#$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netmaker $(1)/usr/bin/
-	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netclient $(1)/usr/bin/
-	$(CP) ./root/* $(1)/
+	#$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netclient $(1)/usr/bin/
+	#$(CP) ./root/* $(1)/
 	$(LN) netclient $(1)/etc/netclient/netclient
 endef
 
 define Package/netmaker/postinst
 #!/bin/sh
-	chmod +x ./etc/init.d/netclient
+	#chmod +x ./etc/init.d/netclient
 	chmod +x ./etc/netclient
-	chmod +x ./etc/hotplug.d/iface/99-netclient
+	#chmod +x ./etc/hotplug.d/iface/99-netclient
 exit 0
 endef
 
