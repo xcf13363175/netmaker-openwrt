@@ -81,15 +81,15 @@ define Package/netmaker/install
 	$(INSTALL_DIR) $(1)/etc/systemd/system
 	$(INSTALL_DIR) $(1)/usr/bin
 	#$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netmaker $(1)/usr/bin/
-	#$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netclient $(1)/usr/bin/
-	#$(CP) ./root/* $(1)/
-	$(LN) netclient $(1)/etc/netclient/netclient
+	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netclient $(1)/usr/bin/
+	$(CP) ./root/* $(1)/
+	#$(LN) netclient $(1)/etc/netclient/netclient
 endef
 
 define Package/netmaker/postinst
 #!/bin/sh
 	#chmod +x ./etc/init.d/netclient
-	chmod +x ./etc/netclient
+	#chmod +x ./etc/netclient
 	#chmod +x ./etc/hotplug.d/iface/99-netclient
 exit 0
 endef
