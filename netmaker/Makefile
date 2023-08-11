@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=netmaker
+PKG_NAME:=netclient
 PKG_VERSION:=0.20.6
 PKG_RELEASE:=1
 
@@ -34,46 +34,46 @@ GO_PKG_LDFLAGS:=-s -w
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
 
-define Package/netmaker
-$(call Package/netmaker/Default)
+define Package/netclient
+$(call Package/netclient/Default)
 $(call GoPackage/GoSubMenu)
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=VPN
 endef
 
-define Package/netmaker/Default
-  TITLE:=Netmaker for OpenWRT
-  URL:=https://github.com/gravitl/netmaker
+define Package/netclient/Default
+  TITLE:=Netclient for OpenWRT
+  URL:=https://github.com/gravitl/netclient
   DEPENDS:=$(GO_ARCH_DEPENDS)
   MAINTAINER:=sbilly <superli_1980@hotmail.com>
 endef
 
-define Package/netmaker/Default/description
-Netmaker is a platform for creating and managing fast, secure, and 
+define Package/netclient/Default/description
+Netclient is a platform for creating and managing fast, secure, and 
 dynamic virtual overlay networks using WireGuard. This project offers
-OpenWRT packages for Netmaker.
+OpenWRT packages for Netclient.
 endef
 
-define Package/netmaker/description
-$(call Package/netmaker/Default/description)
+define Package/netclient/description
+$(call Package/netclient/Default/description)
 
 This package contains the binaries.
 endef
 
-define Package/netmaker/install
+define Package/netclient/install
 	$(INSTALL_DIR) $(1)/etc/netclient
 	#$(INSTALL_DIR) $(1)/etc/netclient/config
 	$(INSTALL_DIR) $(1)/etc/systemd/
 	$(INSTALL_DIR) $(1)/etc/systemd/system
 	$(INSTALL_DIR) $(1)/usr/bin
-	#$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netmaker $(1)/usr/bin/
+	#$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netclient $(1)/usr/bin/
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/netclient $(1)/usr/bin/
 	$(CP) ./root/* $(1)/
 	#$(LN) netclient $(1)/etc/netclient/netclient
 endef
 
-define Package/netmaker/postinst
+define Package/netclient/postinst
 #!/bin/sh
 	#chmod +x ./etc/init.d/netclient
 	#chmod +x ./etc/netclient
@@ -81,5 +81,5 @@ define Package/netmaker/postinst
 exit 0
 endef
 
-$(eval $(call GoBinPackage,netmaker)) \
-$(eval $(call BuildPackage,netmaker)) \
+$(eval $(call GoBinPackage,netclient)) \
+$(eval $(call BuildPackage,netclient)) \
